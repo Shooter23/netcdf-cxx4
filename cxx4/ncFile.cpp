@@ -175,3 +175,17 @@ void NcFile::redef(){
 void NcFile::enddef() {
     ncCheck(nc_enddef(myId),__FILE__,__LINE__);
 }
+
+std::string NcFile::getFilePath() const
+{
+    std::size_t filePathLength;
+    nc_inq_path(getId(), &filePathLength, nullptr);
+
+    char *filePathCString = new char[filePathLength + 1];
+    nc_inq_path(getId(), nullptr, filePathCString);
+
+    std::string filePath {filePathCString};
+    delete[] filePathCString;
+
+    return filePath;
+}
