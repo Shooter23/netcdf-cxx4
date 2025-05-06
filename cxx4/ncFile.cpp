@@ -5,6 +5,7 @@
 #include<iostream>
 #include<string>
 #include<sstream>
+#include<vector>
 using namespace std;
 using namespace netCDF;
 using namespace netCDF::exceptions;
@@ -179,13 +180,10 @@ void NcFile::enddef() {
 string NcFile::getPath() const
 {
     size_t pathLength;
-    nc_inq_path(myId, &pathLength, nullptr);
+    ncCheck(nc_inq_path(myId, &pathLength, nullptr),__FILE__,__LINE__);
 
-    char *pathCString = new char[pathLength + 1];
-    nc_inq_path(myId, nullptr, pathCString);
+    vector<char> pathCString(pathLength + 1);
+    ncCheck(nc_inq_path(myId, nullptr, pathCString.data()),__FILE__,__LINE__);
 
-    string path (pathCString);
-    delete[] pathCString;
-
-    return path;
+    return string(pathCString.data());
 }
