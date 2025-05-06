@@ -178,14 +178,14 @@ void NcFile::enddef() {
 
 string NcFile::getPath() const
 {
-    size_t filePathLength;
-    nc_inq_path(myId, &filePathLength, nullptr);
+    size_t pathLength;
+    nc_inq_path(myId, &pathLength, nullptr);
 
-    char *filePathCString = new char[filePathLength + 1];
-    nc_inq_path(myId, nullptr, filePathCString);
+    char *pathCString = new char[pathLength + 1];
+    nc_inq_path(myId, nullptr, pathCString);
 
-    string filePath {filePathCString};
-    delete[] filePathCString;
+    string path (pathCString);
+    delete[] pathCString;
 
-    return filePath;
+    return path;
 }
