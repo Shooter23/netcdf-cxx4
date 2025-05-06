@@ -120,7 +120,7 @@ namespace netCDF
       //! Leave define mode, used for classic model
       void enddef();
 
-      std::string getFilePath() const;
+      std::string getPath() const;
 
 
    private:
