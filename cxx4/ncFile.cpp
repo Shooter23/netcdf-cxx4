@@ -176,7 +176,7 @@ void NcFile::enddef() {
     ncCheck(nc_enddef(myId),__FILE__,__LINE__);
 }
 
-string NcFile::getFilePath() const
+string NcFile::getPath() const
 {
     size_t filePathLength;
     nc_inq_path(myId, &filePathLength, nullptr);
