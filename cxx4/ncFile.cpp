@@ -180,10 +180,10 @@ void NcFile::enddef() {
 string NcFile::getPath() const
 {
     size_t pathLength;
-    ncCheck(nc_inq_path(myId, &pathLength, nullptr),__FILE__,__LINE__);
+    ncCheck(nc_inq_path(myId, &pathLength, NULL),__FILE__,__LINE__);
 
     vector<char> pathCString(pathLength + 1);
-    ncCheck(nc_inq_path(myId, nullptr, pathCString.data()),__FILE__,__LINE__);
+    ncCheck(nc_inq_path(myId, NULL, pathCString.data()),__FILE__,__LINE__);
 
     return string(pathCString.data());
 }
